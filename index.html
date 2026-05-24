@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Newton-Raphson Method Calculator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- MathJax -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']]
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- TITLE -->
+    <section class="hero">
+
+        <h1>Newton-Raphson Method Online Calculator</h1>
+
+        <p>
+            Numerical Methods Project using Flask, Python, HTML/CSS, and MathJax.
+        </p>
+
+    </section>
+
+    <!-- DISCUSSION -->
+    <section class="card">
+
+        <h2>Mathematical Discussion</h2>
+
+        <p>
+            The Newton-Raphson Method is a numerical method used to find
+            the approximate root of an equation.
+        </p>
+
+        <p>
+            It starts with an initial guess and repeatedly improves the value
+            using the derivative of the function.
+        </p>
+
+        <div class="formula">
+            \[
+            x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}
+            \]
+        </div>
+
+        <p>Where:</p>
+
+        <ul>
+            <li>\(x_n\) = current approximation</li>
+            <li>\(f(x_n)\) = function value</li>
+            <li>\(f'(x_n)\) = derivative value</li>
+            <li>\(x_{n+1}\) = next approximation</li>
+        </ul>
+
+    </section>
+
+    <!-- WORKED EXAMPLE 1 -->
+    <section class="card">
+
+        <h2>Worked Example 1</h2>
+
+        <p>Find the root of:</p>
+
+        <div class="formula">
+            \[
+            f(x)=x^2-4
+            \]
+        </div>
+
+        <p>Derivative:</p>
+
+        <div class="formula">
+            \[
+            f'(x)=2x
+            \]
+        </div>
+
+        <p>Initial guess:</p>
+
+        <div class="formula">
+            \[
+            x_0=3
+            \]
+        </div>
+
+        <table>
+
+            <tr>
+                <th>Iteration</th>
+                <th>xₙ</th>
+                <th>f(xₙ)</th>
+                <th>f'(xₙ)</th>
+                <th>xₙ₊₁</th>
+                <th>Error</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>3.0000</td>
+                <td>5.0000</td>
+                <td>6.0000</td>
+                <td>2.1667</td>
+                <td>0.8333</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>2.1667</td>
+                <td>0.6944</td>
+                <td>4.3334</td>
+                <td>2.0064</td>
+                <td>0.1603</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>2.0064</td>
+                <td>0.0256</td>
+                <td>4.0128</td>
+                <td>2.0000</td>
+                <td>0.0064</td>
+            </tr>
+
+        </table>
+
+        <p>
+            <strong>
+                Therefore, the approximate root is \(x = 2.0000\).
+            </strong>
+        </p>
+
+    </section>
+
+    <!-- WORKED EXAMPLE 2 -->
+    <section class="card">
+
+        <h2>Worked Example 2</h2>
+
+        <p>Find the root of:</p>
+
+        <div class="formula">
+            \[
+            f(x)=x^3-x-2
+            \]
+        </div>
+
+        <p>Derivative:</p>
+
+        <div class="formula">
+            \[
+            f'(x)=3x^2-1
+            \]
+        </div>
+
+        <p>Initial guess:</p>
+
+        <div class="formula">
+            \[
+            x_0=1.5
+            \]
+        </div>
+
+        <table>
+
+            <tr>
+                <th>Iteration</th>
+                <th>xₙ</th>
+                <th>f(xₙ)</th>
+                <th>f'(xₙ)</th>
+                <th>xₙ₊₁</th>
+                <th>Error</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>1.5000</td>
+                <td>-0.1250</td>
+                <td>5.7500</td>
+                <td>1.5217</td>
+                <td>0.0217</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>1.5217</td>
+                <td>0.0021</td>
+                <td>5.9471</td>
+                <td>1.5214</td>
+                <td>0.0004</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>1.5214</td>
+                <td>0.0000</td>
+                <td>5.9438</td>
+                <td>1.5214</td>
+                <td>0.0000</td>
+            </tr>
+
+        </table>
+
+        <p>
+            <strong>
+                Therefore, the approximate root is \(x = 1.5214\).
+            </strong>
+        </p>
+
+    </section>
+
+    <!-- CALCULATOR -->
+    <section class="card">
+
+        <h2>Interactive Calculator</h2>
+
+        <form method="POST">
+
+            <label>Function f(x)</label>
+
+            <input
+                type="text"
+                name="function"
+                value="x**3 - x - 2"
+                required
+            >
+
+            <label>Derivative f'(x)</label>
+
+            <input
+                type="text"
+                name="derivative"
+                value="3*x**2 - 1"
+                required
+            >
+
+            <label>Initial Guess</label>
+
+            <input
+                type="number"
+                step="any"
+                name="x0"
+                value="1.5"
+                required
+            >
+
+            <label>Tolerance</label>
+
+            <input
+                type="number"
+                step="any"
+                name="tolerance"
+                value="0.0001"
+                required
+            >
+
+            <label>Maximum Iterations</label>
+
+            <input
+                type="number"
+                name="max_iter"
+                value="20"
+                required
+            >
+
+            <button type="submit">
+                Calculate Root
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- RESULT -->
+    {% if root is not none %}
+
+    <section class="card result-box">
+
+        <h2>Final Result</h2>
+
+        <p>
+            <strong>Approximate Root:</strong>
+            {{ root }}
+        </p>
+
+        <h3>Iteration Table</h3>
+
+        <table>
+
+            <tr>
+                <th>Iteration</th>
+                <th>xₙ</th>
+                <th>f(xₙ)</th>
+                <th>f'(xₙ)</th>
+                <th>xₙ₊₁</th>
+                <th>Error</th>
+            </tr>
+
+            {% for row in results %}
+
+            <tr>
+                <td>{{ row.iteration }}</td>
+                <td>{{ row.xn }}</td>
+                <td>{{ row.fx }}</td>
+                <td>{{ row.dfx }}</td>
+                <td>{{ row.x_next }}</td>
+                <td>{{ row.error }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </section>
+
+    {% endif %}
+
+    <!-- ERROR -->
+    {% if error %}
+
+    <section class="card error-box">
+
+        <h2>Error</h2>
+
+        <p>{{ error }}</p>
+
+    </section>
+
+    {% endif %}
+
+</main>
+
+<footer>
+    Newton-Raphson Method Online Calculator | Numerical Methods Project
+</footer>
+
+</body>
+</html>
