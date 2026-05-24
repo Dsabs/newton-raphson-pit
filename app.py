@@ -123,4 +123,7 @@ def index():
     }
 )
 if __name__ == "__main__":
+    application = app
+
+if __name__ == "__main__":
     app.run()
